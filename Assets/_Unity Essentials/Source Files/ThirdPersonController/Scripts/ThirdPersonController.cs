@@ -155,7 +155,8 @@ namespace StarterAssets
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
-
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             JumpAndGravity();
             GroundedCheck();
             Move();
