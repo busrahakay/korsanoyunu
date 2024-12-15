@@ -10,36 +10,49 @@ public class PuzzleManager : MonoBehaviour
     public GameObject Cup;
 
     public GameObject ParticleEffect;
-    public void CupFound()
-        => ObjectFound(Cup);
-    public void BotFound()
-        => ObjectFound(Bot);
-    public void KafaFound()
-        => ObjectFound(Kafa);
-    public void SiseFound()
-        => ObjectFound(Sise);
+    public AudioClip foundSound; // Ses dosyasýný referans almak için deðiþken ekleyin
+    private AudioSource audioSource; // AudioSource bileþeni için deðiþken ekleyin
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    public void CupFound() => ObjectFound(Cup);
+    public void BotFound() => ObjectFound(Bot);
+    public void KafaFound() => ObjectFound(Kafa);
+    public void SiseFound() => ObjectFound(Sise);
+
     public void CheckMissionComplete()
     {
-        if(ObjectsToFind == FoundObjects)
+        if (ObjectsToFind == FoundObjects)
         {
-            //Next Level
+            // Next Level
         }
     }
-    private void ObjectFound(GameObject Object)
+
+    private void ObjectFound(GameObject foundObject)
     {
-        Object.SetActive(false);
-        Instantiate(ParticleEffect, Object.transform.position, Object.transform.rotation);
+        foundObject.SetActive(false);
+        Instantiate(ParticleEffect, foundObject.transform.position, foundObject.transform.rotation);
+        audioSource.PlayOneShot(foundSound); // Ses dosyasýný çal
         FoundObjects++;
         CheckMissionComplete();
     }
-    /* Coroutine diye ararsin
-    private IEnumerator ScaleUp(float MaxScale, GameObject Object)
+
+    /* Coroutine örneði:
+    private IEnumerator ScaleUp(float maxScale, GameObject obj)
     {
-        while (Object.transform.scale.X < MaxScale)
+        Vector3 initialScale = obj.transform.localScale;
+        Vector3 targetScale = new Vector3(maxScale, maxScale, maxScale);
+
+        while (obj.transform.localScale.x < maxScale)
         {
-            yield return new WaitForSeconds(.1f);
-            Object.transform.scale = Object.transform.scale * .1f;
+            obj.transform.localScale = Vector3.Lerp(obj.transform.localScale, targetScale, Time.deltaTime * 0.1f);
+            yield return null;
         }
-        //Particle SetActive True
-    }*/
+
+        // Particle Effect SetActive True
+    }
+    */
 }

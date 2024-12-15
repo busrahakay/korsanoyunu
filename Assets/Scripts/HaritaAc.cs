@@ -1,17 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DialogueEditor;
 
 public class HaritaAc : MonoBehaviour
 {
     public GameObject map;
-    public GameObject map1;
     public PlayerInput playerInput;
+    public NPCConversation npc;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             map.SetActive(true);
-            map1.SetActive(true);
+            ConversationManager.Instance.StartConversation(npc);
             playerInput.enabled = false;
         }
     }
