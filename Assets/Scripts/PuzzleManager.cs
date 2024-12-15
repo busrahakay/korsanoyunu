@@ -1,5 +1,6 @@
 using DialogueEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PuzzleManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PuzzleManager : MonoBehaviour
     public GameObject ParticleEffect;
     public AudioClip foundSound; // Ses dosyasýný referans almak için deðiþken ekleyin
     private AudioSource audioSource; // AudioSource bileþeni için deðiþken ekleyin
+    //public GameObject loader;
 
     void Start()
     {
@@ -29,7 +31,7 @@ public class PuzzleManager : MonoBehaviour
     {
         if (ObjectsToFind == FoundObjects)
         {
-            // Next Level
+            
         }
     }
 

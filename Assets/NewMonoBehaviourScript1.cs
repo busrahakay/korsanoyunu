@@ -5,7 +5,7 @@ public class NewMonoBehaviourScript1 : MonoBehaviour
     Camera kamera;
     Vector2 baslangýc_pozisyonu;
     GameObject[] game;
-    //yonetici yonet;
+    [SerializeField] BoneGame boneGame;
 
     private void OnMouseDrag()
     {
@@ -33,8 +33,12 @@ public class NewMonoBehaviourScript1 : MonoBehaviour
                     float mesafe=Vector3.Distance(kutu.transform.position,transform.position);
                     if (mesafe <= 1)
                     {
-                        transform.position=kutu.transform.position;
-                        //yonet.sayi_arttir();
+                        if (transform.parent != kutu.transform)
+                        {
+                            transform.SetParent(kutu.transform);
+                            transform.localPosition = Vector3.zero;
+                            boneGame.sayi_arttir();
+                        }
                     }
                     else
                     {

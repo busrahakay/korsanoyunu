@@ -3,7 +3,7 @@ using UnityEngine;
 public class yonetici : MonoBehaviour
 {
     int yerlestirilen_parca = 0;
-    int toplam_puzzle = 12;
+    int toplam_puzzle = 14;
     void Start()
     {
         
