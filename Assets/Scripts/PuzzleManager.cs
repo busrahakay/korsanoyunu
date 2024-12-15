@@ -1,14 +1,16 @@
+using DialogueEditor;
 using UnityEngine;
 
 public class PuzzleManager : MonoBehaviour
 {
     public byte ObjectsToFind;
     public byte FoundObjects = 0;
+    public GameObject son_image, ok;
     public GameObject Kafa;
     public GameObject Bot;
     public GameObject Sise;
     public GameObject Cup;
-
+    public NPCConversation npc;
     public GameObject ParticleEffect;
     public AudioClip foundSound; // Ses dosyasýný referans almak için deðiþken ekleyin
     private AudioSource audioSource; // AudioSource bileþeni için deðiþken ekleyin
@@ -35,9 +37,20 @@ public class PuzzleManager : MonoBehaviour
     {
         foundObject.SetActive(false);
         Instantiate(ParticleEffect, foundObject.transform.position, foundObject.transform.rotation);
-        audioSource.PlayOneShot(foundSound); // Ses dosyasýný çal
+        audioSource.Play(); // Ses dosyasýný çal
         FoundObjects++;
         CheckMissionComplete();
+    }
+
+    private void Update()
+    {
+        if (FoundObjects == 4 && son_image.activeSelf == false) ShowPuzzleDialogue();
+    }
+    private void ShowPuzzleDialogue()
+    {
+        son_image.SetActive(true);
+        ok.SetActive(true);
+        ConversationManager.Instance.StartConversation(npc);
     }
 
     /* Coroutine örneði:
