@@ -46,4 +46,4 @@ _"Pirate’s Puzzle"_, Unity eğitiminde edindiğimiz bilgi birikimini, GameJam 
 4. `Scenes/MainScene.unity` dosyasını çalıştırarak oyunu başlatabilirsin.  
 5. Play tuşuna basarak geliştirme ortamında oyunu test edebilirsin.
 
-🔧 Uygulama arayüzü ve işlevi görselleri için result_images dosyasını inceleyin!
+🔧 Uygulama arayüz görselleri için result_images dosyasını inceleyin!
